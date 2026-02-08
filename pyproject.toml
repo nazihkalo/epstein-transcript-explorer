@@ -1,0 +1,13 @@
+[project]
+name = "epstein-transcription"
+version = "0.1.0"
+description = "Transcription and analysis of the Epstein-Ehud recording with search and Q&A"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "deepgram-sdk",
+    "python-dotenv",
+    "modal",
+    "fastapi[standard]",
+    "openai",
+]

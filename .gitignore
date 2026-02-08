@@ -1,0 +1,28 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Environment variables
+.env
+
+# Data artifacts (keep structured JSON + summary, ignore raw/large files)
+data/transcription.json
+data/embeddings.json
+data/*.mp4
+data/*.wav
+data/*.mp3
+
+# Next.js
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+
+# OS
+.DS_Store
