@@ -7,7 +7,6 @@ import { formatDuration } from "../lib/format";
 import { getSpeakerName } from "../lib/speakers";
 import { fetchSummary } from "../lib/api";
 import Link from "next/link";
-import Image from "next/image";
 
 interface Section {
   title: string;
@@ -98,6 +97,7 @@ export default function OverviewPage() {
   const [summary, setSummary] = useState<DetailedSummary | null>(null);
   const [summaryLoading, setSummaryLoading] = useState(true);
   const [showAllFigures, setShowAllFigures] = useState(false);
+  const [expandedFigure, setExpandedFigure] = useState<number | null>(null);
 
   useEffect(() => {
     fetchSummary()
@@ -138,12 +138,11 @@ export default function OverviewPage() {
     <div className="-mx-4 -mt-8">
       {/* Hero section */}
       <div className="relative h-64 sm:h-80 overflow-hidden">
-        <Image
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           src="/hero.jpg"
           alt="Recording frame"
-          fill
-          className="object-cover"
-          priority
+          className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80" />
         <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-10">
@@ -230,17 +229,23 @@ export default function OverviewPage() {
           <section className="rounded-xl border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-900">
             <h2 className="text-lg font-semibold">Key Figures Mentioned</h2>
             <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-              {visibleFigures.map((fig, i) => (
-                <div
-                  key={i}
-                  className="rounded-lg bg-zinc-50 px-3 py-2.5 dark:bg-zinc-800/50"
-                >
-                  <div className="font-medium text-sm">{fig.name}</div>
-                  <div className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5 line-clamp-2">
-                    {fig.context}
-                  </div>
-                </div>
-              ))}
+              {visibleFigures.map((fig, i) => {
+                const isExpanded = expandedFigure === i;
+                return (
+                  <button
+                    key={i}
+                    onClick={() => setExpandedFigure(isExpanded ? null : i)}
+                    className="rounded-lg bg-zinc-50 px-3 py-2.5 text-left transition-colors hover:bg-zinc-100 dark:bg-zinc-800/50 dark:hover:bg-zinc-800"
+                  >
+                    <div className="font-medium text-sm">{fig.name}</div>
+                    <div
+                      className={`text-xs text-zinc-500 dark:text-zinc-400 mt-0.5 ${isExpanded ? "" : "line-clamp-2"}`}
+                    >
+                      {fig.context}
+                    </div>
+                  </button>
+                );
+              })}
             </div>
             {(summary.key_figures_mentioned.length > 12) && (
               <button
