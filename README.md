@@ -2,6 +2,12 @@
 
 Transcription, search, and Q&A over the Epstein-Ehud recording. Uses Deepgram for transcription with speaker diarization and entity detection, a Next.js frontend for exploration, and Modal for deployment.
 
+**Live demo:** [https://nazihkalo--epstein-transcript-explorer-serve.modal.run/](https://nazihkalo--epstein-transcript-explorer-serve.modal.run/)
+
+## Demo
+
+<video src="https://github.com/nazihkalo/epstein-transcript-explorer/raw/main/data/epstein_dmeo.mov" controls width="100%"></video>
+
 ## Setup
 
 ### 1. Install Python deps
