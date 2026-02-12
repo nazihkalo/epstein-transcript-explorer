@@ -6,7 +6,10 @@ Transcription, search, and Q&A over the Epstein-Ehud recording. Uses Deepgram fo
 
 ## Demo
 
-<video src="https://github.com/nazihkalo/epstein-transcript-explorer/raw/main/data/epstein_dmeo.mov" controls width="100%"></video>
+
+https://github.com/user-attachments/assets/f3e7ea58-81cf-4059-aefb-9e7ff2051591
+
+
 
 ## Setup
 
